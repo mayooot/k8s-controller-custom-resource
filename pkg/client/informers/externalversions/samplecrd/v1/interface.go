@@ -19,7 +19,7 @@ limitations under the License.
 package v1
 
 import (
-	internalinterfaces "github.com/resouer/k8s-controller-custom-resource/pkg/client/informers/externalversions/internalinterfaces"
+	internalinterfaces "k8s-controller-custom-resource/pkg/client/informers/externalversions/internalinterfaces"
 )
 
 // Interface provides access to all the informers in this group version.

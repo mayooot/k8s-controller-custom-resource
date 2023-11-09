@@ -19,8 +19,11 @@ limitations under the License.
 package v1
 
 import (
-	v1 "github.com/resouer/k8s-controller-custom-resource/pkg/apis/samplecrd/v1"
-	scheme "github.com/resouer/k8s-controller-custom-resource/pkg/client/clientset/versioned/scheme"
+	"context"
+	v1 "k8s-controller-custom-resource/pkg/apis/samplecrd/v1"
+	scheme "k8s-controller-custom-resource/pkg/client/clientset/versioned/scheme"
+	"time"
+
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	types "k8s.io/apimachinery/pkg/types"
 	watch "k8s.io/apimachinery/pkg/watch"
@@ -68,31 +71,41 @@ func (c *networks) Get(name string, options metav1.GetOptions) (result *v1.Netwo
 		Resource("networks").
 		Name(name).
 		VersionedParams(&options, scheme.ParameterCodec).
-		Do().
+		Do(context.TODO()).
 		Into(result)
 	return
 }
 
 // List takes label and field selectors, and returns the list of Networks that match those selectors.
 func (c *networks) List(opts metav1.ListOptions) (result *v1.NetworkList, err error) {
+	var timeout time.Duration
+	if opts.TimeoutSeconds != nil {
+		timeout = time.Duration(*opts.TimeoutSeconds) * time.Second
+	}
 	result = &v1.NetworkList{}
 	err = c.client.Get().
 		Namespace(c.ns).
 		Resource("networks").
 		VersionedParams(&opts, scheme.ParameterCodec).
-		Do().
+		Timeout(timeout).
+		Do((context.TODO())).
 		Into(result)
 	return
 }
 
 // Watch returns a watch.Interface that watches the requested networks.
 func (c *networks) Watch(opts metav1.ListOptions) (watch.Interface, error) {
+	var timeout time.Duration
+	if opts.TimeoutSeconds != nil {
+		timeout = time.Duration(*opts.TimeoutSeconds) * time.Second
+	}
 	opts.Watch = true
 	return c.client.Get().
 		Namespace(c.ns).
 		Resource("networks").
 		VersionedParams(&opts, scheme.ParameterCodec).
-		Watch()
+		Timeout(timeout).
+		Watch((context.TODO()))
 }
 
 // Create takes the representation of a network and creates it.  Returns the server's representation of the network, and an error, if there is any.
@@ -102,7 +115,7 @@ func (c *networks) Create(network *v1.Network) (result *v1.Network, err error) {
 		Namespace(c.ns).
 		Resource("networks").
 		Body(network).
-		Do().
+		Do((context.TODO())).
 		Into(result)
 	return
 }
@@ -115,7 +128,7 @@ func (c *networks) Update(network *v1.Network) (result *v1.Network, err error) {
 		Resource("networks").
 		Name(network.Name).
 		Body(network).
-		Do().
+		Do((context.TODO())).
 		Into(result)
 	return
 }
@@ -127,18 +140,23 @@ func (c *networks) Delete(name string, options *metav1.DeleteOptions) error {
 		Resource("networks").
 		Name(name).
 		Body(options).
-		Do().
+		Do((context.TODO())).
 		Error()
 }
 
 // DeleteCollection deletes a collection of objects.
 func (c *networks) DeleteCollection(options *metav1.DeleteOptions, listOptions metav1.ListOptions) error {
+	var timeout time.Duration
+	if listOptions.TimeoutSeconds != nil {
+		timeout = time.Duration(*listOptions.TimeoutSeconds) * time.Second
+	}
 	return c.client.Delete().
 		Namespace(c.ns).
 		Resource("networks").
 		VersionedParams(&listOptions, scheme.ParameterCodec).
+		Timeout(timeout).
 		Body(options).
-		Do().
+		Do((context.TODO())).
 		Error()
 }
 
@@ -151,7 +169,7 @@ func (c *networks) Patch(name string, pt types.PatchType, data []byte, subresour
 		SubResource(subresources...).
 		Name(name).
 		Body(data).
-		Do().
+		Do((context.TODO())).
 		Into(result)
 	return
 }

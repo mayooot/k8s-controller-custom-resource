@@ -19,12 +19,12 @@ limitations under the License.
 package v1
 
 import (
+	samplecrdv1 "k8s-controller-custom-resource/pkg/apis/samplecrd/v1"
+	versioned "k8s-controller-custom-resource/pkg/client/clientset/versioned"
+	internalinterfaces "k8s-controller-custom-resource/pkg/client/informers/externalversions/internalinterfaces"
+	v1 "k8s-controller-custom-resource/pkg/client/listers/samplecrd/v1"
 	time "time"
 
-	samplecrdv1 "github.com/resouer/k8s-controller-custom-resource/pkg/apis/samplecrd/v1"
-	versioned "github.com/resouer/k8s-controller-custom-resource/pkg/client/clientset/versioned"
-	internalinterfaces "github.com/resouer/k8s-controller-custom-resource/pkg/client/informers/externalversions/internalinterfaces"
-	v1 "github.com/resouer/k8s-controller-custom-resource/pkg/client/listers/samplecrd/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	watch "k8s.io/apimachinery/pkg/watch"

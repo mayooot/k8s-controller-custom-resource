@@ -19,13 +19,13 @@ limitations under the License.
 package externalversions
 
 import (
+	versioned "k8s-controller-custom-resource/pkg/client/clientset/versioned"
+	internalinterfaces "k8s-controller-custom-resource/pkg/client/informers/externalversions/internalinterfaces"
+	samplecrd "k8s-controller-custom-resource/pkg/client/informers/externalversions/samplecrd"
 	reflect "reflect"
 	sync "sync"
 	time "time"
 
-	versioned "github.com/resouer/k8s-controller-custom-resource/pkg/client/clientset/versioned"
-	internalinterfaces "github.com/resouer/k8s-controller-custom-resource/pkg/client/informers/externalversions/internalinterfaces"
-	samplecrd "github.com/resouer/k8s-controller-custom-resource/pkg/client/informers/externalversions/samplecrd"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"

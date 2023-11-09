@@ -19,7 +19,8 @@ limitations under the License.
 package versioned
 
 import (
-	samplecrdv1 "github.com/resouer/k8s-controller-custom-resource/pkg/client/clientset/versioned/typed/samplecrd/v1"
+	samplecrdv1 "k8s-controller-custom-resource/pkg/client/clientset/versioned/typed/samplecrd/v1"
+
 	discovery "k8s.io/client-go/discovery"
 	rest "k8s.io/client-go/rest"
 	flowcontrol "k8s.io/client-go/util/flowcontrol"
@@ -28,8 +29,6 @@ import (
 type Interface interface {
 	Discovery() discovery.DiscoveryInterface
 	SamplecrdV1() samplecrdv1.SamplecrdV1Interface
-	// Deprecated: please explicitly pick a version if possible.
-	Samplecrd() samplecrdv1.SamplecrdV1Interface
 }
 
 // Clientset contains the clients for groups. Each group has exactly one
@@ -41,12 +40,6 @@ type Clientset struct {
 
 // SamplecrdV1 retrieves the SamplecrdV1Client
 func (c *Clientset) SamplecrdV1() samplecrdv1.SamplecrdV1Interface {
-	return c.samplecrdV1
-}
-
-// Deprecated: Samplecrd retrieves the default version of SamplecrdClient.
-// Please explicitly pick a version.
-func (c *Clientset) Samplecrd() samplecrdv1.SamplecrdV1Interface {
 	return c.samplecrdV1
 }
 

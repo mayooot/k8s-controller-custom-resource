@@ -19,9 +19,9 @@ limitations under the License.
 package v1
 
 import (
-	v1 "github.com/resouer/k8s-controller-custom-resource/pkg/apis/samplecrd/v1"
-	"github.com/resouer/k8s-controller-custom-resource/pkg/client/clientset/versioned/scheme"
-	serializer "k8s.io/apimachinery/pkg/runtime/serializer"
+	v1 "k8s-controller-custom-resource/pkg/apis/samplecrd/v1"
+	"k8s-controller-custom-resource/pkg/client/clientset/versioned/scheme"
+
 	rest "k8s.io/client-go/rest"
 )
 
@@ -30,7 +30,7 @@ type SamplecrdV1Interface interface {
 	NetworksGetter
 }
 
-// SamplecrdV1Client is used to interact with features provided by the samplecrd.k8s.io group.
+// SamplecrdV1Client is used to interact with features provided by the samplecrd.example.com group.
 type SamplecrdV1Client struct {
 	restClient rest.Interface
 }
@@ -71,7 +71,7 @@ func setConfigDefaults(config *rest.Config) error {
 	gv := v1.SchemeGroupVersion
 	config.GroupVersion = &gv
 	config.APIPath = "/apis"
-	config.NegotiatedSerializer = serializer.DirectCodecFactory{CodecFactory: scheme.Codecs}
+	config.NegotiatedSerializer = scheme.Codecs.WithoutConversion()
 
 	if config.UserAgent == "" {
 		config.UserAgent = rest.DefaultKubernetesUserAgent()

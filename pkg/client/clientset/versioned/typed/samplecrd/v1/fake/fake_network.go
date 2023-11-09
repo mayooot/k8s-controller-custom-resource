@@ -19,7 +19,8 @@ limitations under the License.
 package fake
 
 import (
-	samplecrdv1 "github.com/resouer/k8s-controller-custom-resource/pkg/apis/samplecrd/v1"
+	samplecrdv1 "k8s-controller-custom-resource/pkg/apis/samplecrd/v1"
+
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	labels "k8s.io/apimachinery/pkg/labels"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
@@ -34,9 +35,9 @@ type FakeNetworks struct {
 	ns   string
 }
 
-var networksResource = schema.GroupVersionResource{Group: "samplecrd.k8s.io", Version: "v1", Resource: "networks"}
+var networksResource = schema.GroupVersionResource{Group: "samplecrd.example.com", Version: "v1", Resource: "networks"}
 
-var networksKind = schema.GroupVersionKind{Group: "samplecrd.k8s.io", Version: "v1", Kind: "Network"}
+var networksKind = schema.GroupVersionKind{Group: "samplecrd.example.com", Version: "v1", Kind: "Network"}
 
 // Get takes name of the network, and returns the corresponding network object, and an error if there is any.
 func (c *FakeNetworks) Get(name string, options v1.GetOptions) (result *samplecrdv1.Network, err error) {
@@ -119,7 +120,7 @@ func (c *FakeNetworks) DeleteCollection(options *v1.DeleteOptions, listOptions v
 // Patch applies the patch and returns the patched network.
 func (c *FakeNetworks) Patch(name string, pt types.PatchType, data []byte, subresources ...string) (result *samplecrdv1.Network, err error) {
 	obj, err := c.Fake.
-		Invokes(testing.NewPatchSubresourceAction(networksResource, c.ns, name, data, subresources...), &samplecrdv1.Network{})
+		Invokes(testing.NewPatchSubresourceAction(networksResource, c.ns, name, pt, data, subresources...), &samplecrdv1.Network{})
 
 	if obj == nil {
 		return nil, err
