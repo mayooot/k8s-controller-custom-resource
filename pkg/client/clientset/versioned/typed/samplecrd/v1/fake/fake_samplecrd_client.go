@@ -19,7 +19,7 @@ limitations under the License.
 package fake
 
 import (
-	v1 "k8s-controller-custom-resource/pkg/client/clientset/versioned/typed/samplecrd/v1"
+	v1 "github.com/mayooot/k8s-controller-custom-resource/pkg/client/clientset/versioned/typed/samplecrd/v1"
 
 	rest "k8s.io/client-go/rest"
 	testing "k8s.io/client-go/testing"

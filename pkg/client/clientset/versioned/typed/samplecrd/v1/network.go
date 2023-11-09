@@ -20,8 +20,8 @@ package v1
 
 import (
 	"context"
-	v1 "k8s-controller-custom-resource/pkg/apis/samplecrd/v1"
-	scheme "k8s-controller-custom-resource/pkg/client/clientset/versioned/scheme"
+	v1 "github.com/mayooot/k8s-controller-custom-resource/pkg/apis/samplecrd/v1"
+	scheme "github.com/mayooot/k8s-controller-custom-resource/pkg/client/clientset/versioned/scheme"
 	"time"
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"

@@ -5,7 +5,7 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	"k8s-controller-custom-resource/pkg/apis/samplecrd"
+	"github.com/mayooot/k8s-controller-custom-resource/pkg/apis/samplecrd"
 )
 
 // GroupVersion is the identifier for the API which includes

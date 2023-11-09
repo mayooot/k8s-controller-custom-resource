@@ -19,8 +19,8 @@ limitations under the License.
 package v1
 
 import (
-	v1 "k8s-controller-custom-resource/pkg/apis/samplecrd/v1"
-	"k8s-controller-custom-resource/pkg/client/clientset/versioned/scheme"
+	v1 "github.com/mayooot/k8s-controller-custom-resource/pkg/apis/samplecrd/v1"
+	"github.com/mayooot/k8s-controller-custom-resource/pkg/client/clientset/versioned/scheme"
 
 	rest "k8s.io/client-go/rest"
 )

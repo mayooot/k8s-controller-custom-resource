@@ -1,4 +1,4 @@
-module k8s-controller-custom-resource
+module github.com/mayooot/k8s-controller-custom-resource
 
 go 1.19
 

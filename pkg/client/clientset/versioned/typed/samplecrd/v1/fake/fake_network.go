@@ -19,7 +19,7 @@ limitations under the License.
 package fake
 
 import (
-	samplecrdv1 "k8s-controller-custom-resource/pkg/apis/samplecrd/v1"
+	samplecrdv1 "github.com/mayooot/k8s-controller-custom-resource/pkg/apis/samplecrd/v1"
 
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	labels "k8s.io/apimachinery/pkg/labels"

@@ -19,9 +19,9 @@ limitations under the License.
 package externalversions
 
 import (
-	versioned "k8s-controller-custom-resource/pkg/client/clientset/versioned"
-	internalinterfaces "k8s-controller-custom-resource/pkg/client/informers/externalversions/internalinterfaces"
-	samplecrd "k8s-controller-custom-resource/pkg/client/informers/externalversions/samplecrd"
+	versioned "github.com/mayooot/k8s-controller-custom-resource/pkg/client/clientset/versioned"
+	internalinterfaces "github.com/mayooot/k8s-controller-custom-resource/pkg/client/informers/externalversions/internalinterfaces"
+	samplecrd "github.com/mayooot/k8s-controller-custom-resource/pkg/client/informers/externalversions/samplecrd"
 	reflect "reflect"
 	sync "sync"
 	time "time"
